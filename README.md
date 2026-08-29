@@ -19,13 +19,20 @@ The study compares several pretrained convolutional neural network (CNN) archite
 
 The project is designed as a reproducible experimental study, using multiple random seeds and reporting **mean ± standard deviation** rather than relying on a single training run.
 
+**Status: Ongoing research project**
+
 ---
 
 ## Research Question
 
-> **How well do pretrained CNN architectures generalize to an unseen brain MRI dataset, and can data augmentation improve their cross-domain robustness?**
+The project currently investigates:
 
-The project focuses on the difference between strong **within-domain performance** and actual **external-domain generalization**.
+> - How do different pretrained CNN architectures compare in cross-domain brain tumor MRI classification?
+> - How stable are their external-domain results across different random seeds?
+> - Can data augmentation improve the cross-domain generalization of the selected architecture?
+> - Which tumor classes are most difficult to classify across domains?
+  
+**Further experiments will investigate whether uncertainty estimation can provide additional insight into model reliability under domain shift.**
 
 ---
 
@@ -78,3 +85,26 @@ The dataset is divided into training and validation subsets. The validation set 
 ### External Dataset — Dataset B
 A separate brain MRI dataset is used exclusively for external testing.
 Dataset B is not used during model training or validation. This allows the project to measure performance under a domain shift between the source and target datasets.
+
+---
+
+## Current Progress
+
+### 1. Baseline architecture comparison — Completed
+ResNet18, DenseNet121, and EfficientNet-B3 were evaluated using three random seeds.
+EfficientNet-B3 demonstrated the strongest mean external-domain performance among the evaluated architectures and was selected for further experimentation.
+### 2. Data augmentation — Completed
+Data augmentation is being investigated using EfficientNet-B3.
+The current augmentation pipeline includes:
+Random horizontal flipping
+Random rotation
+Small affine transformations
+Mild brightness and contrast variation
+Image resizing and normalization
+The augmented model is evaluated using the same three random seeds as the baseline experiment.
+Preliminary results indicate an improvement in external-domain performance compared with the baseline EfficientNet-B3 model. The experiment is being rerun with complete automated result logging to ensure reproducibility.
+### 3. Uncertainty estimation — In progress 
+The next stage will investigate uncertainty estimation using Monte Carlo Dropout (MC-Dropout).
+The goal is to examine whether model uncertainty can help identify predictions that are less reliable under domain shift.
+
+----
