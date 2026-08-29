@@ -76,13 +76,13 @@ The project currently investigates:
 ---
 
 ## Dataset
-### Source Dataset — Dataset A
+### Source Dataset — Figshare brain-tumor MRI dataset
 The source dataset contains contrast-enhanced brain MRI images belonging to three tumor classes:
 - Glioma
 - Meningioma
 - Pituitary
 The dataset is divided into training and validation subsets. The validation set is used for model selection during training.
-### External Dataset — Dataset B
+### External Dataset — Kaggle-based brain-tumor MRI dataset
 A separate brain MRI dataset is used exclusively for external testing.
 Dataset B is not used during model training or validation. This allows the project to measure performance under a domain shift between the source and target datasets.
 
@@ -108,3 +108,4 @@ The next stage will investigate uncertainty estimation using Monte Carlo Dropout
 The goal is to examine whether model uncertainty can help identify predictions that are less reliable under domain shift.
 
 ----
+
