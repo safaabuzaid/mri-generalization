@@ -108,4 +108,21 @@ The next stage will investigate uncertainty estimation using Monte Carlo Dropout
 The goal is to examine whether model uncertainty can help identify predictions that are less reliable under domain shift.
 
 ----
+## Results
 
+Three pretrained CNN architectures were evaluated for cross-domain brain tumor MRI classification. EfficientNet-B3 achieved the best external test performance.
+
+| Model | External Test Accuracy |
+|---|---:|
+| ResNet18 | 89.83% |
+| DenseNet121 | 89.83% |
+| **EfficientNet-B3** | **94.14%** |
+
+Data augmentation was subsequently applied to EfficientNet-B3 and evaluated across three random seeds.
+
+| Metric | EfficientNet-B3 + Augmentation |
+|---|---:|
+| Accuracy | **95.15 ± 0.43%** |
+| Macro F1 | **95.13 ± 0.43%** |
+
+Detailed results, confusion matrices, and classification reports are available in the `results/` directory.
