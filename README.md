@@ -125,4 +125,4 @@ Data augmentation was subsequently applied to EfficientNet-B3 and evaluated acro
 | Accuracy | **95.15 ± 0.43%** |
 | Macro F1 | **95.13 ± 0.43%** |
 
-Detailed results, confusion matrices, and classification reports are available in the `results/` directory.
+Detailed results, confusion matrices, and classification reports are available in the [results](./results/) directory.
