@@ -38,11 +38,21 @@ def train_one_epoch(model,loader,optimizer,criterion,device):
   return epoch_loss, epoch_acc
 
 
-def train_model (model, train_loader,val_loader, optimizer, criterion, device, num_epochs = 10):
+def train_model(
+    model,
+    train_loader,
+    val_loader,
+    optimizer,
+    criterion,
+    device,
+    num_epochs=10,
+    save_path="best_model.pth"
+):
+
     best_val_acc = 0
     best_epoch = 0
 
-        # Store history for plotting later
+    # Store history for plotting later
     history = {
         "train_loss": [],
         "train_acc": [],
@@ -53,20 +63,29 @@ def train_model (model, train_loader,val_loader, optimizer, criterion, device, n
     for epoch in range(num_epochs):
 
         train_loss, train_acc = train_one_epoch(
-            model, train_loader, optimizer, criterion, device
+            model,
+            train_loader,
+            optimizer,
+            criterion,
+            device
         )
 
         val_loss, val_acc = validate(
-            model, val_loader, criterion, device
+            model,
+            val_loader,
+            criterion,
+            device
         )
 
-    # Save history
+        # Save history
         history["train_loss"].append(train_loss)
         history["train_acc"].append(train_acc)
         history["val_loss"].append(val_loss)
         history["val_acc"].append(val_acc)
 
+        # Save best model
         if val_acc > best_val_acc:
+
             best_val_acc = val_acc
             best_epoch = epoch + 1
 
@@ -74,8 +93,12 @@ def train_model (model, train_loader,val_loader, optimizer, criterion, device, n
             best_train_loss = train_loss
             best_val_loss = val_loss
 
-            torch.save(model.state_dict(), "best_model.pth")
-            print("Best model saved!")
+            torch.save(
+                model.state_dict(),
+                save_path
+            )
+
+            print(f"Best model saved to: {save_path}")
 
         print(f"Epoch [{epoch+1}/{num_epochs}]")
         print(f"Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.4f}")
@@ -89,4 +112,4 @@ def train_model (model, train_loader,val_loader, optimizer, criterion, device, n
         best_train_acc,
         best_val_loss,
         best_val_acc
-    ) 
+    )
