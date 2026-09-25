@@ -126,3 +126,21 @@ Data augmentation was subsequently applied to EfficientNet-B3 and evaluated acro
 | Macro F1 | **95.13 ± 0.43%** |
 
 Detailed results, confusion matrices, and classification reports are available in the [results](./results/) directory.
+
+### Uncertainty Estimation with MC Dropout
+
+To assess model uncertainty on the external test dataset, Monte Carlo (MC) Dropout was applied to the trained EfficientNet-B3 model.
+
+* **Model:** EfficientNet-B3 trained on Dataset A with data augmentation
+* **Checkpoint:** Best validation checkpoint for seed 42
+* **External dataset:** Dataset B (2,543 images)
+* **MC passes:** 10 stochastic forward passes per image
+* **Uncertainty measure:** Predictive entropy calculated from the mean class probabilities
+* **Output:** Per-image predictions, class probabilities, uncertainty estimates, and prediction correctness were saved as a CSV file.
+
+The resulting file is:
+
+`results/efficientnet_b3_mc_dropout_seed42_10passes.csv`
+
+The uncertainty analysis is performed separately in `MC_Dropout_Analysis.ipynb`, where the relationship between model uncertainty and prediction correctness is examined.
+
