@@ -78,13 +78,17 @@ The project currently investigates:
 ## Dataset
 ### Source Dataset — Figshare brain-tumor MRI dataset
 The source dataset contains contrast-enhanced brain MRI images belonging to three tumor classes:
+
 - Glioma
 - Meningioma
 - Pituitary
+  
 The dataset is divided into training and validation subsets. The validation set is used for model selection during training.
+
 ### External Dataset — Kaggle-based brain-tumor MRI dataset
-A separate brain MRI dataset is used exclusively for external testing.
-Dataset B is not used during model training or validation. This allows the project to measure performance under a domain shift between the source and target datasets.
+
+- A separate brain MRI dataset is used exclusively for external testing.
+- Dataset B is not used during model training or validation. This allows the project to measure performance under a domain shift between the source and target datasets.
 
 ---
 
@@ -103,9 +107,13 @@ Mild brightness and contrast variation
 Image resizing and normalization
 The augmented model is evaluated using the same three random seeds as the baseline experiment.
 Preliminary results indicate an improvement in external-domain performance compared with the baseline EfficientNet-B3 model. The experiment is being rerun with complete automated result logging to ensure reproducibility.
-### 3. Uncertainty estimation — In progress 
-The next stage will investigate uncertainty estimation using Monte Carlo Dropout (MC-Dropout).
-The goal is to examine whether model uncertainty can help identify predictions that are less reliable under domain shift.
+
+### 3. Uncertainty Analysis — Exploratory, Completed
+
+Monte Carlo Dropout was applied to EfficientNet-B3 (seed 42) on the independent external test dataset using 10 stochastic forward passes.
+Predictive entropy was used to investigate the relationship between model uncertainty and classification errors.
+
+**Limitation:** This was a single-seed exploratory analysis. Individual stochastic predictions were not retained, preventing mutual-information-based uncertainty decomposition.
 
 ----
 ## Results
